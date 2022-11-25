@@ -25,12 +25,17 @@ class LinkedList:
         node = self.head
 
         count = 0
-        while count < index:
-            node = node.next
-            count += 1
+        try:
+            while count < index:
+                if node.next is None:
+                    raise AttributeError("Lenth Error")
+                node = node.next
+                count += 1        
 
-        return node.data
+            return node
+        except AttributeError as E :
+            return E
 
 linked_list = LinkedList(5)
 linked_list.append(12)
-print(linked_list.get_node(1)) # -> 5를 들고 있는 노드를 반환해야 합니다!
+print(linked_list.get_node(5))
